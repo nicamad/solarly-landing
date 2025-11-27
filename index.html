@@ -429,14 +429,35 @@
       yearSpan.textContent = new Date().getFullYear();
     }
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const emailInput = form.querySelector('input[name="email"]');
-      if (!emailInput.value) return;
-      // TODO: Replace this with your actual API call to Resend / backend.
-      msg.classList.remove('hidden');
-      emailInput.value = '';
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const emailInput = form.querySelector('input[name="email"]');
+  const email = (emailInput.value || '').trim();
+  if (!email) return;
+
+  msg.classList.add('hidden');
+  msg.classList.remove('text-red-400');
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
     });
+
+    if (!res.ok) throw new Error('Request failed');
+
+    msg.textContent = "Got it. You're on the radar. ☀️";
+    msg.classList.remove('hidden');
+    emailInput.value = '';
+  } catch (err) {
+    console.error(err);
+    msg.textContent = "Hmm, something glitched. Please try again.";
+    msg.classList.remove('hidden');
+    msg.classList.add('text-red-400');
+  }
+});
+
   </script>
 </body>
 </html>
