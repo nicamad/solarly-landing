@@ -7,7 +7,7 @@ const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL; // e.g. "Solarly <hi@so
 const RESEND_INTERNAL_EMAIL =
   process.env.RESEND_INTERNAL_EMAIL || 'hi@solarly.ai';
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -39,12 +39,12 @@ export default async function handler(req, res) {
     //
     // 1) Insert into Supabase waitlist
     //
-    const response = await fetch(endpoint, {
+    const supabaseRes = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         apikey: SUPABASE_SERVICE_ROLE_KEY,
-        Authorization: \`Bearer \${SUPABASE_SERVICE_ROLE_KEY}\`,
+        Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
         Prefer: 'return=representation',
       },
       body: JSON.stringify({
@@ -54,70 +54,54 @@ export default async function handler(req, res) {
       }),
     });
 
-    const text = await response.text();
-    console.info('Supabase status:', response.status, 'body:', text);
+    const supabaseBody = await supabaseRes.json().catch(() => null);
+    console.info(
+      'Supabase status:',
+      supabaseRes.status,
+      'body:',
+      JSON.stringify(supabaseBody)
+    );
 
-    if (!response.ok) {
-      console.error('Supabase insert failed:', text);
-      return res.status(500).json({ error: 'Supabase insert failed' });
+    if (!supabaseRes.ok) {
+      console.error('Supabase insert failed:', supabaseBody);
+      return res.status(500).json({ error: 'Failed to save signup' });
     }
 
     //
-    // 2) Fire Resend emails (welcome + internal alert), non-critical
+    // 2) Resend emails (welcome + internal)
     //
     if (RESEND_API_KEY && RESEND_FROM_EMAIL) {
       const headers = {
         'Content-Type': 'application/json',
-        Authorization: \`Bearer \${RESEND_API_KEY}\`,
+        Authorization: `Bearer ${RESEND_API_KEY}`,
       };
 
-      // Gentle first-name guess from email local-part
-      const localPart = leadEmail.split('@')[0] || '';
-      const firstChunk = localPart.split(/[._-]/)[0] || '';
-      const safeFirstName = firstChunk.replace(/[^a-z0-9]/gi, '');
-      const greetingName = safeFirstName || 'there';
-
-      const welcomeSubject = "You're on the Solarly waitlist 🌞";
+      // 2a) Welcome email
+      const welcomeSubject = "Welcome to Solarly's private beta ☀️";
 
       const welcomeTextLines = [
-        \`Hey \${greetingName},\`,
+        'Hey there,',
         '',
-        'Thanks for signing up on solarly.ai — you’re on the waitlist for Solarly’s private beta.',
+        "You’re on the list for Solarly, the AI trading co-pilot.",
+        'We’ll reach out as new wings, signals, and co-pilot features go live.',
         '',
-        'What to expect next:',
-        '- Occasional build updates (no spam).',
-        '- A heads-up when your wing is ready (Coinbase or Roth-Tastytrade).',
-        '- A simple way to opt out any time.',
-        '',
-        'If this wasn’t you, just reply and we’ll remove you.',
+        'In the meantime, keep that BTC sink humming ☀️',
         '',
         '– Solarly',
-        'hi@solarly.ai',
       ];
-
       const welcomeText = welcomeTextLines.join('\n');
 
       const welcomeHtml = `
-        <p>Hey ${greetingName},</p>
-        <p>
-          Thanks for signing up on <strong>solarly.ai</strong> —
-          you’re on the waitlist for Solarly’s private beta.
-        </p>
-        <p>What to expect next:</p>
-        <ul>
-          <li>Occasional build updates (no spam).</li>
-          <li>A heads-up when your wing is ready (Coinbase or Roth-Tastytrade).</li>
-          <li>A simple way to opt out any time.</li>
-        </ul>
-        <p>
-          If this wasn’t you, just reply and we’ll remove you.
-        </p>
-        <p>– Solarly<br/>hi@solarly.ai</p>
+        <p>Hey there,</p>
+        <p>You’re on the list for <strong>Solarly</strong>, the AI trading co-pilot.</p>
+        <p>We’ll reach out as new wings, signals, and co-pilot features go live.</p>
+        <p>In the meantime, keep that BTC sink humming ☀️</p>
+        <p>– Solarly</p>
       `;
 
       const tasks = [];
 
-      // 2a) Welcome email to the lead
+      // to must be an array per Resend docs
       tasks.push(
         fetch('https://api.resend.com/emails', {
           method: 'POST',
@@ -132,12 +116,12 @@ export default async function handler(req, res) {
         })
       );
 
-      // 2b) Internal notification to you
+      // 2b) Internal notification
       if (RESEND_INTERNAL_EMAIL) {
         const internalTextLines = [
           'New lead on solarly.ai',
           '',
-          \`Email: \${leadEmail}\`,
+          `Email: ${leadEmail}`,
           'Source: hero_form',
         ];
 
@@ -177,4 +161,4 @@ export default async function handler(req, res) {
       .status(500)
       .json({ error: 'Network error talking to Supabase/Resend' });
   }
-}
+};
