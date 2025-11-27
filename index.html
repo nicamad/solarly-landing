@@ -28,6 +28,65 @@
       border-radius: 9999px;
     }
   </style>
+
+<style>
+  .platform-strip {
+    margin-top: 1.75rem;
+    font-size: 0.75rem;
+    color: #e5e7eb;
+  }
+
+  .platform-strip-label {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    color: #9ca3af;
+    margin-bottom: 0.35rem;
+  }
+
+  .platform-strip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .platform-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    background: rgba(15, 23, 42, 0.7);
+  }
+
+  .platform-logo {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+  }
+
+  .platform-pill-sub {
+    color: #9ca3af;
+    font-weight: 400;
+  }
+
+  .platform-strip-footnote {
+    margin-top: 0.25rem;
+    font-size: 11px;
+    color: #9ca3af;
+  }
+
+  @media (min-width: 640px) {
+    .platform-strip,
+    .platform-strip-footnote {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
 </head>
 <body class="text-slate-100 antialiased">
   <!-- Page wrapper -->
@@ -115,6 +174,42 @@
                   </p>
                 </form>
               </div>
+
+
+
+<section class="platform-strip">
+  <p class="platform-strip-label">Platforms Solarly works with</p>
+
+  <div class="platform-strip-row">
+    <div class="platform-pill">
+      <img
+        src="/public/logos/coinbase.svg"
+        alt="Coinbase"
+        class="platform-logo"
+      />
+      <span>
+        Coinbase
+        <span class="platform-pill-sub"> · Crypto &amp; BTC sink</span>
+      </span>
+    </div>
+
+    <div class="platform-pill">
+      <img
+        src="/public/logos/tastytrade.svg"
+        alt="Tastytrade"
+        class="platform-logo"
+      />
+      <span>
+        Tastytrade
+        <span class="platform-pill-sub"> · Options co-pilot</span>
+      </span>
+    </div>
+  </div>
+
+  <p class="platform-strip-footnote">
+    Works with both taxable and retirement accounts on Coinbase &amp; Tastytrade.
+  </p>
+</section>
 
               <div class="mt-6 flex flex-wrap items-center gap-3 text-xs text-slate-400">
                 <div class="inline-flex items-center gap-2 pill border border-slate-700/80 bg-slate-900/80 px-3 py-1">
