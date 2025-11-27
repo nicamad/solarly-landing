@@ -3,9 +3,9 @@ const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const TABLE_NAME = 'solarly_signups';
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL; // e.g. "Solarly <hi@solarly.ai>"
-const RESEND_INTERNAL_EMAIL =
-  process.env.RESEND_INTERNAL_EMAIL || 'hi@solarly.ai';
+const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL; // "Solarly <hi@solarly.ai>"
+const RESEND_INTERNAL_ALERT_EMAIL =
+  process.env.RESEND_INTERNAL_ALERT_EMAIL || 'hi@solarly.ai';
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -20,7 +20,7 @@ module.exports = async function handler(req, res) {
   console.info('Supabase base URL:', SUPABASE_URL);
   console.info('Supabase table:', TABLE_NAME);
   console.info('Resend lead to:', leadEmail);
-  console.info('Resend internal to:', RESEND_INTERNAL_EMAIL);
+  console.info('Resend internal to:', RESEND_INTERNAL_ALERT_EMAIL);
 
   if (!leadEmail) {
     console.error('Missing email in request body');
@@ -76,8 +76,7 @@ module.exports = async function handler(req, res) {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       };
 
-      // 2a) Welcome email
-      const welcomeSubject = "Welcome to Solarly's private beta ☀️";
+      const welcomeSubject = "Welcome to Solarly's private beta 🌞";
 
       const welcomeTextLines = [
         'Hey there,',
@@ -101,7 +100,7 @@ module.exports = async function handler(req, res) {
 
       const tasks = [];
 
-      // to must be an array per Resend docs
+      // 2a) Welcome email to lead
       tasks.push(
         fetch('https://api.resend.com/emails', {
           method: 'POST',
@@ -116,8 +115,8 @@ module.exports = async function handler(req, res) {
         })
       );
 
-      // 2b) Internal notification
-      if (RESEND_INTERNAL_EMAIL) {
+      // 2b) Internal notification to you
+      if (RESEND_INTERNAL_ALERT_EMAIL) {
         const internalTextLines = [
           'New lead on solarly.ai',
           '',
@@ -137,7 +136,7 @@ module.exports = async function handler(req, res) {
             headers,
             body: JSON.stringify({
               from: RESEND_FROM_EMAIL,
-              to: [RESEND_INTERNAL_EMAIL],
+              to: [RESEND_INTERNAL_ALERT_EMAIL],
               subject: 'New Solarly signup',
               text: internalTextLines.join('\n'),
               html: internalHtml,
