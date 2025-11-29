@@ -2,6 +2,7 @@
 //
 // Vercel serverless function for Solarly hero leads.
 // Uses SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY from env.
+// Writes into public.solarly_signups.
 
 module.exports = async (req, res) => {
   // Only allow POST
@@ -20,13 +21,21 @@ module.exports = async (req, res) => {
 
     const cleanEmail = email.trim().toLowerCase();
     const cleanTier =
-      tier && typeof tier === "string" ? tier.trim() : "unknown";
-    const cleanSource =
-      source && typeof source === "string" ? source.trim() : "hero";
+      tier && typeof tier === "string" ? tier.trim().toLowerCase() : "unknown";
+    const cleanSourceBase =
+      source && typeof source === "string" ? source.trim() : "hero_form";
+
+    // Encode tier into source so you can segment in Supabase
+    const supabaseSource =
+      cleanTier === "unknown"
+        ? cleanSourceBase
+        : `${cleanSourceBase}_${cleanTier}`;
 
     const SUPABASE_URL = process.env.SUPABASE_URL;
     const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    const LEADS_TABLE = process.env.SUPABASE_LEADS_TABLE || "leads";
+
+    // This is the table you showed in the screenshot
+    const LEADS_TABLE = "solarly_signups";
 
     if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
       console.error(
@@ -37,12 +46,15 @@ module.exports = async (req, res) => {
         .json({ error: "Supabase not configured on server" });
     }
 
-    const insertUrl = `${SUPABASE_URL.replace(/\/+$/, "")}/rest/v1/${LEADS_TABLE}`;
+    const insertUrl = `${SUPABASE_URL.replace(
+      /\/+$/,
+      ""
+    )}/rest/v1/${LEADS_TABLE}`;
 
+    // Match existing columns: email, source, created_at
     const payload = {
       email: cleanEmail,
-      tier: cleanTier,
-      source: cleanSource,
+      source: supabaseSource,
       created_at: new Date().toISOString(),
     };
 
