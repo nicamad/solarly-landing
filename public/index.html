@@ -688,21 +688,19 @@
                     type="button"
                     class="btn btn-secondary"
                   >
-                    Start 7-Day Pro Trial – $1.99
+                    Start 7-Day Free Trial
                   </button>
                 </div>
 
-                <p class="hero-cta-disclaimer">
-                  No spam. Just signal updates and product news. Ready for full
-                  access? Use the Pro trial button above for 7 days at $1.99,
-                  then $49/mo. Educational signals only; Solarly ADVISOR does
-                  not execute trades or manage accounts.
-                </p>
-
-                <p id="lead-message" class="lead-message" hidden></p>
-              </form>
-            </div>
-
+      <p class="hero-cta-disclaimer">
+        No spam. Just signal updates and product news. Ready for full
+        access? Use the Pro trial button above for <strong>7 days free,
+        then $49/mo.</strong> Educational signals only; Solarly ADVISOR
+        does not execute trades or manage accounts.
+      </p>
+      <p id="lead-message" class="lead-message" hidden></p>
+    </form>
+  </div>
             <div class="hero-footer-row">
               <div class="pill">
                 <span class="pill-icon">📊</span>
@@ -908,7 +906,7 @@
 
             <article class="card">
               <h3>Trial</h3>
-              <h4>How does the $1.99 Pro trial work?</h4>
+              <h4>How does the free trial work?</h4>
               <p>
                 You get 7 days of Solarly Advisor + Journal signals in Discord.
                 After that it renews at $49/mo unless you cancel via Stripe.
@@ -933,7 +931,7 @@
         const leadMsg = document.getElementById("lead-message");
 
         // 🔒 TODO: replace with your real Stripe payment link URL
-        const STRIPE_PRO_URL = "https://YOUR_STRIPE_PAYMENT_LINK_HERE";
+        const STRIPE_PRO_URL = "https://buy.stripe.com/6oU00ibiXfww2TG3judwc01";
 
         function setMessage(kind, text) {
           if (!leadMsg) return;
