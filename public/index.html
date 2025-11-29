@@ -1,348 +1,639 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Solarly – AI trading co-pilot for BTC, ETH &amp; GSOL</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
-    <meta
-      name="description"
-      content="Solarly reads regimes, scores edge, and runs inside risk guardrails across your Coinbase and Tastytrade universes. Rules & data first; memes optional."
-    />
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <title>Solarly.ai – AI Trading Co-Pilot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Solarly is an AI-powered trading co-pilot for crypto and options traders, built to read regimes, score edges, and act within guardrails." />
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom tweaks */
+    body {
+      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #020617 100%);
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+    .solar-halo {
+      background: radial-gradient(circle at center, rgba(250, 204, 21, 0.25), transparent 60%);
+    }
+    .orbit-ring {
+      border-radius: 9999px;
+      border: 1px dashed rgba(148, 163, 184, 0.35);
+    }
+    .pill {
+      border-radius: 9999px;
+    }
+  </style>
 
-    <!-- If your existing index.html used a different stylesheet path, swap this href to match it -->
-    <link rel="stylesheet" href="/styles.css" />
-    <link rel="icon" href="/favicon.ico" />
-  </head>
+<style>
+  .platform-strip {
+    margin-top: 1.75rem;
+    font-size: 0.75rem;
+    color: #e5e7eb;
+  }
 
-  <body class="bg-slate-950 text-slate-50 antialiased">
-    <div class="min-h-screen flex flex-col">
-      <!-- NAVBAR -->
-      <header
-        class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md"
-      >
-        <div
-          class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
-        >
-          <a href="#top" class="flex items-center gap-2">
-            <div
-              class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 via-orange-400 to-pink-500 shadow-lg shadow-orange-500/50"
-            >
-              <span class="text-sm font-semibold text-slate-950">☀️</span>
-            </div>
-            <div class="leading-tight">
-              <div class="text-xs font-semibold tracking-[.22em] uppercase">
-                Solarly
-              </div>
-              <div class="text-[11px] text-slate-400">AI trading co-pilot</div>
-            </div>
-          </a>
+  .platform-strip-label {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    color: #9ca3af;
+    margin-bottom: 0.35rem;
+  }
 
-          <nav class="hidden items-center gap-8 text-sm text-slate-200 md:flex">
-            <a href="#how-it-works" class="hover:text-slate-50">How it works</a>
-            <a href="#wings" class="hover:text-slate-50">Wings</a>
-            <a href="#for-whom" class="hover:text-slate-50">For whom</a>
-            <a href="#faq" class="hover:text-slate-50">FAQ</a>
-          </nav>
+  .platform-strip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
 
-          <div class="flex items-center gap-3">
-            <a
-              href="#signup"
-              class="hidden rounded-full border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-200 hover:border-slate-500 md:inline-flex"
-              >Get on the list</a
-            >
-            <a
-              href="#signup"
-              class="inline-flex items-center rounded-full bg-gradient-to-r from-amber-300 via-orange-400 to-pink-500 px-4 py-2 text-xs font-semibold text-slate-950 shadow-md shadow-orange-500/40 hover:brightness-105"
-            >
-              Get early access
-            </a>
+  .platform-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    background: rgba(15, 23, 42, 0.7);
+  }
+
+  .platform-logo {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+  }
+
+  .platform-pill-sub {
+    color: #9ca3af;
+    font-weight: 400;
+  }
+
+  .platform-strip-footnote {
+    margin-top: 0.25rem;
+    font-size: 11px;
+    color: #9ca3af;
+  }
+
+  @media (min-width: 640px) {
+    .platform-strip,
+    .platform-strip-footnote {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="text-slate-100 antialiased">
+  <!-- Page wrapper -->
+  <div class="min-h-screen flex flex-col">
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-30 bg-slate-950/70 backdrop-blur border-b border-slate-800/60">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <div class="flex items-center gap-2">
+          <div class="h-8 w-8 rounded-2xl bg-gradient-to-tr from-yellow-400 via-orange-400 to-fuchsia-500 flex items-center justify-center text-slate-950 text-xl font-black shadow-lg shadow-yellow-500/30">
+            ☀️
+          </div>
+          <div class="flex flex-col leading-tight">
+            <span class="font-semibold tracking-tight text-slate-50">Solarly</span>
+            <span class="text-[11px] uppercase tracking-[0.18em] text-slate-400">AI trading co-pilot</span>
           </div>
         </div>
-      </header>
 
-      <main id="top" class="flex-1">
-        <!-- HERO -->
-        <section class="relative overflow-hidden">
-          <div
-            class="pointer-events-none absolute inset-0 -translate-y-32 solar-halo opacity-70"
-          ></div>
+        <nav class="hidden md:flex items-center gap-8 text-sm">
+          <a href="#how" class="text-slate-300 hover:text-yellow-300 transition">How it works</a>
+          <a href="#wings" class="text-slate-300 hover:text-yellow-300 transition">Wings</a>
+          <a href="#whofor" class="text-slate-300 hover:text-yellow-300 transition">For whom</a>
+          <a href="#faq" class="text-slate-300 hover:text-yellow-300 transition">FAQ</a>
+        </nav>
 
+        <a href="#signup" class="hidden sm:inline-flex pill px-4 py-2 text-xs font-semibold bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-500 text-slate-950 shadow-md hover:shadow-yellow-400/40 transition">
+          Get early access
+        </a>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="flex-1">
+
+
+      <!-- HERO -->
+      <section class="relative overflow-hidden">
+        <div
+          class="absolute inset-0 solar-halo opacity-70 -translate-y-32 pointer-events-none"
+        ></div>
+
+        <div
+          class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+        >
           <div
-            class="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+            class="grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-10 items-center"
           >
-            <div
-              class="grid items-center gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]"
-            >
-              <!-- LEFT: copy + CTA -->
-              <div>
-                <div
-                  class="inline-flex items-center rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-slate-300"
-                >
-                  <span
-                    class="mr-2 inline-block h-2 w-2 rounded-full bg-emerald-400"
-                  ></span>
-                  Private beta · Crypto &amp; options
-                </div>
+            <!-- Left column: copy + CTA -->
+            <div>
+              <div
+                class="inline-flex items-center rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-slate-300"
+              >
+                <span class="mr-2 h-2 w-2 rounded-full bg-emerald-400"></span>
+                PRIVATE BETA · CRYPTO &amp; OPTIONS
+              </div>
 
-                <h1
-                  class="mt-6 text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl lg:text-6xl"
+              <h1
+                class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-slate-50"
+              >
+                AI-powered trading journal for BTC, ETH &amp; GSOL
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-400 to-pink-400"
+                  >riding the market sun for you.</span
                 >
-                  AI-powered trading journal for BTC, ETH &amp; GSOL
-                  <span
-                    class="block bg-gradient-to-r from-amber-300 via-orange-400 to-pink-400 bg-clip-text text-transparent"
-                    >riding the market sun for you.</span
-                  >
-                </h1>
+              </h1>
 
-                <p class="mt-4 max-w-xl text-base text-slate-300 sm:text-lg">
-                  Solarly reads regimes, scores edge, and executes inside risk
-                  guardrails across your
-                  <span class="font-semibold">Coinbase</span> and
-                  <span class="font-semibold">Tastytrade</span> universes. Rules
-                  &amp; data first; memes optional.
+              <p class="mt-4 max-w-xl text-base sm:text-lg text-slate-300">
+                Solarly reads regimes, scores edge, and executes inside risk
+                guardrails across your <span class="font-semibold">Coinbase</span>
+                and <span class="font-semibold">Tastytrade</span> universes. Rules
+                &amp; data first; memes optional.
+              </p>
+
+              <!-- CTA: free list + Pro trial -->
+              <div
+                id="signup"
+                class="mt-8 max-w-md rounded-2xl bg-slate-900/80 p-5 shadow-xl shadow-yellow-500/20 ring-1 ring-slate-700/80"
+              >
+                <p
+                  class="text-xs font-semibold tracking-wide text-emerald-300 uppercase"
+                >
+                  Get first access to Solarly's live signals &amp; co-pilot tiers
                 </p>
 
-                <!-- CTA: free list + Pro trial -->
-                <div
-                  id="signup"
-                  class="mt-8 max-w-md rounded-2xl bg-slate-900/85 p-5 shadow-xl shadow-yellow-500/25 ring-1 ring-slate-700/80"
+                <form
+                  id="lead-form"
+                  class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center"
                 >
-                  <p
-                    class="text-xs font-semibold uppercase tracking-wide text-emerald-300"
-                  >
-                    Get first access to Solarly's live signals &amp; co-pilot tiers
-                  </p>
-
-                  <form
-                    id="lead-form"
-                    class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center"
-                  >
-                    <div class="w-full flex-1">
-                      <label for="email" class="sr-only">Email</label>
-                      <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        placeholder="you@galaxyfunds.xyz"
-                        class="block w-full rounded-md border border-slate-600 bg-slate-950/80 px-4 py-3 text-sm text-slate-50 placeholder-slate-500 shadow-sm outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                        required
-                      />
-                    </div>
-
-                    <!-- Free / waitlist submit button -->
-                    <button
-                      type="submit"
-                      class="inline-flex items-center justify-center rounded-md bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
-                    >
-                      Get free signals
-                    </button>
-
-                    <!-- Pro trial button (Stripe checkout) -->
-                    <button
-                      type="button"
-                      id="advisor-pro-btn"
-                      class="inline-flex items-center justify-center rounded-md border border-sky-400 px-5 py-3 text-sm font-semibold text-sky-100 hover:bg-sky-500/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
-                    >
-                      Start 7-Day Pro Trial – $1.99
-                    </button>
-                  </form>
-
-                  <p class="mt-3 text-sm text-slate-300">
-                    No spam. Just signal updates and product news.
-                  </p>
-
-                  <p
-                    id="lead-message"
-                    class="mt-1 text-[11px] text-emerald-400 hidden"
-                  >
-                    Got it. You’re on the radar. ☀️
-                  </p>
-
-                  <p class="mt-2 text-[11px] text-slate-400 leading-snug">
-                    Ready for full access? Use the Pro trial button above for 7
-                    days at $1.99, then $49/mo. Educational signals only; Solarly
-                    ADVISOR does not execute trades or manage accounts.
-                  </p>
-                </div>
-              </div>
-
-              <!-- RIGHT: simple orbit / hero visual -->
-              <div class="relative">
-                <div
-                  class="rounded-3xl border border-slate-700/70 bg-slate-900/75 px-8 py-10"
-                >
-                  <div
-                    class="relative flex h-64 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-300 via-orange-500 to-pink-500 shadow-[0_0_80px_rgba(248,196,102,0.45)]"
-                  >
-                    <div
-                      class="absolute inset-8 rounded-2xl border border-amber-200/40"
-                    ></div>
-                    <div
-                      class="relative flex h-24 w-24 items-center justify-center rounded-full bg-slate-950/90 text-center text-xs font-semibold text-slate-50 shadow-lg shadow-slate-950/80"
-                    >
-                      Solarly<br />AI BOT
-                    </div>
-
-                    <div
-                      class="absolute left-6 top-8 rounded-full border border-slate-900/70 bg-slate-950/80 px-3 py-1 text-[11px] text-slate-100"
-                    >
-                      <span class="mr-1 inline-block h-2 w-2 rounded-full bg-sky-400"></span>
-                      BTC sink mode
-                    </div>
-
-                    <div
-                      class="absolute bottom-8 right-6 rounded-full border border-slate-900/70 bg-slate-950/80 px-3 py-1 text-[11px] text-slate-100"
-                    >
-                      edge_score: <span class="font-mono">0 → 100</span>
-                    </div>
-
-                    <div
-                      class="absolute right-6 top-6 rounded-full border border-slate-900/70 bg-slate-950/80 px-3 py-1 text-[11px] text-slate-100"
-                    >
-                      ☑ BULL / BEAR / FLAT
-                    </div>
+                  <div class="flex-1 w-full">
+                    <label for="email" class="sr-only">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="you@galaxyfunds.xyz"
+                      class="block w-full rounded-md border border-slate-600 bg-slate-900/90 px-4 py-3 text-sm text-slate-50 placeholder-slate-500 shadow-sm outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
+                      required
+                    />
                   </div>
 
-                  <p class="mt-4 text-xs leading-relaxed text-slate-300">
-                    Think of Solarly as the cartoon dragon who actually reads your
-                    risk docs, watches the tape, and only breathes fire when the
-                    odds are stacked in your favor.
-                  </p>
-                </div>
+                  <!-- Free / waitlist submit button -->
+                  <button
+                    type="submit"
+                    class="inline-flex items-center justify-center rounded-md bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
+                  >
+                    Get free signals
+                  </button>
+
+                  <!-- Pro trial button -->
+                  <button
+                    type="button"
+                    id="advisor-pro-btn"
+                    class="inline-flex items-center justify-center rounded-md border border-sky-400 px-5 py-3 text-sm font-semibold text-sky-100 hover:bg-sky-500/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
+                  >
+                    Start 7-Day Pro Trial – $1.99
+                  </button>
+                </form>
+
+                <p class="mt-3 text-sm text-slate-300">
+                  No spam. Just signal updates and product news.
+                </p>
+
+                <p
+                  id="lead-message"
+                  class="mt-1 text-[11px] text-emerald-400 hidden"
+                >
+                  Got it. You’re on the radar. ☀️
+                </p>
+
+                <p class="mt-2 text-[11px] text-slate-400 leading-snug">
+                  Ready for full access? Use the Pro trial button above for 7 days
+                  at $1.99, then $49/mo. Educational signals only; Solarly ADVISOR
+                  does not execute trades or manage accounts.
+                </p>
               </div>
             </div>
 
-            <!-- PLATFORM STRIP -->
-            <section
-              class="mt-10 border-t border-slate-800/70 pt-6 text-xs uppercase tracking-[0.15em] text-slate-400"
-            >
-              <div class="flex flex-wrap items-center justify-between gap-4">
-                <span>Platforms Solarly works with</span>
-                <div class="flex flex-wrap gap-3">
-                  <div
-                    class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1 text-[11px] text-slate-100"
-                  >
-                    <span
-                      class="inline-flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[9px] font-bold text-slate-950"
-                      >C</span
-                    >
-                    Coinbase · Crypto &amp; BTC sink
-                  </div>
-                  <div
-                    class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1 text-[11px] text-slate-100"
-                  >
-                    <span
-                      class="inline-flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-slate-950"
-                      >T</span
-                    >
-                    Tastytrade · Options &amp; LEAPS
-                  </div>
+            <!-- Right column: orbit visual stays as-is -->
+            <div class="relative">
+              <!-- keep your existing right-side hero visual here.
+                   If you already have a <div> with the Solarly bot orb,
+                   leave that markup instead of this placeholder. -->
+              <div
+                class="rounded-3xl bg-slate-900/70 px-8 py-10 border border-slate-700/70"
+              >
+                <!-- existing orbit graphic / content -->
+                <!-- If you have your own markup, use that and delete this placeholder. -->
+                <div
+                  class="flex items-center justify-center h-64 rounded-2xl bg-gradient-to-br from-amber-300 via-orange-500 to-pink-500 text-slate-950 font-semibold text-lg"
+                >
+                  Solarly orbit graphic
                 </div>
               </div>
-            </section>
+            </div>
           </div>
-        </section>
-
-        <!-- You can re-introduce your “How it works”, “Wings”, “For whom”, “FAQ” sections below.
-             For now I’m leaving them out to keep this file focused & clean. -->
-      </main>
-
-      <footer
-        class="border-t border-slate-800/80 bg-slate-950/95 py-6 text-xs text-slate-500"
-      >
-        <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <span>© <span id="year"></span> Solarly. All rights reserved.</span>
-          <span>Educational and analytical tools only. Not investment advice.</span>
         </div>
-      </footer>
-    </div>
+      </section>
 
-    <!-- Minimal inline scripts for lead capture + Stripe Pro trial -->
-    <script>
-      (function () {
-        const yearSpan = document.getElementById("year");
-        if (yearSpan) {
-          yearSpan.textContent = new Date().getFullYear().toString();
-        }
+              <div class="mt-6 flex flex-wrap items-center gap-3 text-xs text-slate-400">
+                <div class="inline-flex items-center gap-2 pill border border-slate-700/80 bg-slate-900/80 px-3 py-1">
+                  <span>📊</span>
+                  <span>Regime-aware · BTC-centric sink · Journals built-in</span>
+                </div>
+                <button
+                  onclick="document.getElementById('philosophy').scrollIntoView({behavior:'smooth'})"
+                  class="inline-flex items-center gap-1 text-slate-300 hover:text-yellow-300 transition"
+                >
+                  <span>See Solarly’s philosophy</span><span>↘</span>
+                </button>
+              </div>
+            </div>
 
-        const leadForm = document.getElementById("lead-form");
-        const emailInput = document.getElementById("email");
-        const leadMessage = document.getElementById("lead-message");
+            <!-- Hero visual -->
+            <div class="relative">
+              <div class="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-yellow-300/10 blur-3xl"></div>
+              <div class="glass rounded-3xl p-5 sm:p-6 lg:p-7 shadow-2xl shadow-slate-950/80 relative overflow-hidden">
+                <!-- Orbit graphic -->
+                <div class="relative h-64 sm:h-72 flex items-center justify-center">
+                  <div class="orbit-ring absolute h-56 w-56 sm:h-64 sm:w-64 opacity-70"></div>
+                  <div class="orbit-ring absolute h-40 w-40 sm:h-48 sm:w-48 opacity-50 rotate-6"></div>
+                  <!-- Sun core -->
+                  <div class="h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-gradient-to-tr from-yellow-300 via-orange-400 to-pink-400 shadow-lg shadow-yellow-500/60 flex flex-col items-center justify-center text-slate-950 text-xs font-black">
+                    <span>Solarly</span>
+                    <span class="text-[10px] tracking-wide">AI BOT</span>
+                  </div>
+                  <!-- Floating chips -->
+                  <div class="absolute -top-1 right-2 pill bg-slate-900/90 border border-slate-700 px-3 py-1 text-[11px] flex items-center gap-1">
+                    <span>📈</span><span>BULL / BEAR / FLAT</span>
+                  </div>
+                  <div class="absolute -bottom-2 left-1 pill bg-slate-900/90 border border-slate-700 px-3 py-1 text-[11px] flex items-center gap-1">
+                    <span>🧠</span><span>edge_score: 0 → 100</span>
+                  </div>
+                  <div class="absolute left-0 top-1/2 -translate-y-1/2 pill bg-slate-900/90 border border-slate-700 px-3 py-1 text-[11px] flex items-center gap-1">
+                    <span>🪙</span><span>BTC sink mode</span>
+                  </div>
+                </div>
 
-        if (leadForm && emailInput) {
-          leadForm.addEventListener("submit", async function (e) {
-            e.preventDefault();
-            const email = emailInput.value.trim();
-            if (!email) return;
+                <p class="mt-4 text-[11px] text-slate-400 leading-relaxed">
+                  Think of Solarly as the cartoon dragon who actually reads your risk docs,
+                  watches the tape, and only breathes fire when the odds are stacked in your favor.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            try {
-              const res = await fetch("/api/lead", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email }),
-              });
+      <!-- HOW IT WORKS -->
+      <section id="how" class="py-14 sm:py-16 lg:py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50 mb-2">
+            How Solarly thinks about trades
+          </h2>
+          <p id="philosophy" class="text-sm text-slate-300 max-w-2xl mb-8">
+            Under the hood, Solarly is a rules-driven analyst: it listens to market structure,
+            not Twitter mood swings. Three pillars keep it honest.
+          </p>
 
-              if (!res.ok) {
-                throw new Error("Lead capture failed: " + res.status);
-              }
+          <div class="grid md:grid-cols-3 gap-5">
+            <!-- Pillar 1 -->
+            <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col gap-2">
+              <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-yellow-300">
+                <span>📡 Regime</span>
+                <span class="h-[1px] flex-1 bg-slate-700"></span>
+              </div>
+              <h3 class="text-sm font-semibold text-slate-50">Reads the regime before it moves</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Trend, volatility, momentum, chop. Before Solarly swings, it labels the
+                environment – BULL, BEAR, or FLAT – using inputs like volatility regimes,
+                MACD-style signals, and realized vs implied behavior.
+              </p>
+            </div>
 
-              if (leadMessage) {
-                leadMessage.classList.remove("hidden");
-              }
-              // keep email in the box for now so people can reuse it for the trial
-            } catch (err) {
-              console.error("Error capturing lead", err);
-              alert(
-                "We couldn't save your email just now. Please try again in a moment."
-              );
-            }
-          });
-        }
+            <!-- Pillar 2 -->
+            <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col gap-2">
+              <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-emerald-300">
+                <span>🧪 Edge</span>
+                <span class="h-[1px] flex-1 bg-slate-700"></span>
+              </div>
+              <h3 class="text-sm font-semibold text-slate-50">Scores the edge, doesn’t guess</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Every setup gets an <span class="font-semibold text-slate-100">edge_score</span>:
+                a blended view of trend strength, volatility context, and recent hit-rate.
+                Low edge? It parks. High edge? It lines up the play.
+              </p>
+            </div>
 
-        async function startAdvisorPro() {
-          try {
-            const emailField = document.getElementById("email");
-            const emailValue = emailField
-              ? emailField.value.trim()
-              : undefined;
+            <!-- Pillar 3 -->
+            <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col gap-2">
+              <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-sky-300">
+                <span>🛡️ Guardrails</span>
+                <span class="h-[1px] flex-1 bg-slate-700"></span>
+              </div>
+              <h3 class="text-sm font-semibold text-slate-50">Operates inside hard guardrails</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Position sizing, per-trade risk, portfolio caps, BTC sink behavior –
+                all codified. Solarly can be spicy, but it’s never allowed to forget
+                the risk memo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            const res = await fetch("/api/checkout-advisor-pro", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(
-                emailValue ? { email: emailValue } : {}
-              ),
-            });
+      <!-- WINGS -->
+      <section id="wings" class="py-14 sm:py-16 lg:py-20 bg-gradient-to-b from-slate-950/80 via-slate-950 to-slate-950">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-8">
+            <div>
+              <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">
+                The wings Solarly flies with
+              </h2>
+              <p class="text-sm text-slate-300 max-w-xl">
+                One engine, multiple “wings” – each tuned to how capital is actually parked:
+                spot, Roth, and pure advisory signals.
+              </p>
+            </div>
+            <div class="text-[11px] text-slate-400 max-w-xs">
+              In private beta, wings can be signals-only while execution layers harden.
+            </div>
+          </div>
 
-            if (!res.ok) {
-              throw new Error("Checkout failed: " + res.status);
-            }
+          <div class="grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-8 items-start">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <!-- Wing: Coinbase -->
+              <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col gap-2">
+                <div class="flex items-center justify-between text-xs text-slate-400">
+                  <span class="pill bg-slate-900/80 px-2 py-1 inline-flex items-center gap-1">
+                    <span>🪙</span><span>Coinbase</span>
+                  </span>
+                  <span class="text-[10px] uppercase tracking-[0.16em] text-emerald-300">Spot focus</span>
+                </div>
+                <h3 class="text-sm font-semibold text-slate-50">BTC-centric, multi-asset bot</h3>
+                <p class="text-xs text-slate-300">
+                  Manages a universe of allowed coins, leaning into edges while treating
+                  BTC as the compounding sink. Grid vs swing behavior is driven by regime
+                  and edge_score, not vibes.
+                </p>
+              </div>
 
-            const data = await res.json();
-            if (data && data.url) {
-              window.location.href = data.url;
-            } else {
-              console.error("Unexpected response from checkout endpoint", data);
-              alert(
-                "Something went wrong starting your trial. Please try again in a minute."
-              );
-            }
-          } catch (err) {
-            console.error("Error starting Pro trial", err);
-            alert(
-              "Unable to start the trial right now. Please try again shortly."
-            );
-          }
-        }
+              <!-- Wing: Tastytrade -->
+              <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col gap-2">
+                <div class="flex items-center justify-between text-xs text-slate-400">
+                  <span class="pill bg-slate-900/80 px-2 py-1 inline-flex items-center gap-1">
+                    <span>📜</span><span>Tastytrade</span>
+                  </span>
+                  <span class="text-[10px] uppercase tracking-[0.16em] text-sky-300">Leaps & stock</span>
+                </div>
+                <h3 class="text-sm font-semibold text-slate-50">Long-horizon options co-pilot</h3>
+                <p class="text-xs text-slate-300">
+                  Treats LEAPS and stock like pieces on a long Go board: rolling, trimming,
+                  and adding in sync with volatility and trend, all within Roth constraints.
+                </p>
+              </div>
 
-        const proBtn = document.getElementById("advisor-pro-btn");
-        if (proBtn) {
-          proBtn.addEventListener("click", startAdvisorPro);
-        }
-      })();
-    </script>
-  </body>
+              <!-- Wing: Advisor -->
+              <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col gap-2 sm:col-span-2">
+                <div class="flex items-center justify-between text-xs text-slate-400">
+                  <span class="pill bg-slate-900/80 px-2 py-1 inline-flex items-center gap-1">
+                    <span>📣</span><span>Advisor mode</span>
+                  </span>
+                  <span class="text-[10px] uppercase tracking-[0.16em] text-fuchsia-300">Signals & journal</span>
+                </div>
+                <h3 class="text-sm font-semibold text-slate-50">Transparent signals, receipts included</h3>
+                <p class="text-xs text-slate-300">
+                  Outputs signals (bias, edge_score, trend_state, vol_regime) plus the receipts:
+                  trade journals, rationale, and PnL views that help you see the dragon’s logic, not
+                  just the flame.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right column: beta callout -->
+            <div class="glass rounded-2xl p-5 sm:p-6 flex flex-col gap-4">
+              <h3 class="text-sm font-semibold text-slate-50">
+                Private beta, not a magic box
+              </h3>
+              <p class="text-xs text-slate-300">
+                Solarly is under active development. Think of this phase as pairing with a
+                relentlessly honest junior PM who lives in your trading stack and documents
+                everything – then gradually earns more execution authority.
+              </p>
+              <ul class="space-y-2 text-xs text-slate-300">
+                <li class="flex gap-2">
+                  <span>✅</span>
+                  <span>Signals-only tiers before full execution access.</span>
+                </li>
+                <li class="flex gap-2">
+                  <span>✅</span>
+                  <span>Strict keys & permission hygiene, per-wing isolation by design.</span>
+                </li>
+                <li class="flex gap-2">
+                  <span>⚠️</span>
+                  <span>No promises of profit, ever. Only structure, process, and logs.</span>
+                </li>
+              </ul>
+              <a href="#signup" class="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-yellow-300 hover:text-yellow-200">
+                Request early access<span>↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHO IT'S FOR -->
+      <section id="whofor" class="py-14 sm:py-16 lg:py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50 mb-2">
+            Who Solarly is built for
+          </h2>
+          <p class="text-sm text-slate-300 max-w-2xl mb-8">
+            Not a meme-coin slot machine. Not a suit-and-tie quant fund either. Solarly sits between:
+            structured enough for serious capital, playful enough to not burn you out.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-5">
+            <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col gap-2">
+              <h3 class="text-sm font-semibold text-slate-50">Builder-traders 🛠️</h3>
+              <p class="text-xs text-slate-300">
+                People who ship code, run infra, and want an
+                <span class="font-semibold">AI layer</span> to standardize their trading playbook without turning it into
+                a black box.
+              </p>
+            </div>
+            <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col gap-2">
+              <h3 class="text-sm font-semibold text-slate-50">Busy pros 🧠</h3>
+              <p class="text-xs text-slate-300">
+                You don’t have time to stare at charts all day but still want
+                <span class="font-semibold">regime-aware entries</span>, BTC-centric growth, and receipts on every decision.
+              </p>
+            </div>
+            <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col gap-2">
+              <h3 class="text-sm font-semibold text-slate-50">Crypto natives with option envy ⚙️</h3>
+              <p class="text-xs text-slate-300">
+                Comfortable in spot, curious in options, and craving a co-pilot that can map
+                both worlds under one mental model.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="py-14 sm:py-16 lg:py-20 bg-slate-950/90 border-t border-slate-800/80">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50 mb-6">
+            FAQ
+          </h2>
+          <div class="space-y-5">
+            <div class="glass rounded-2xl p-4 sm:p-5">
+              <h3 class="text-sm font-semibold text-slate-50">Is this financial advice?</h3>
+              <p class="text-xs text-slate-300 mt-1.5">
+                No. Solarly is tooling: analytics, signals, and (eventually) execution under rules you define.
+                You’re still the final owner of your risk, capital, and decisions.
+              </p>
+            </div>
+
+            <div class="glass rounded-2xl p-4 sm:p-5">
+              <h3 class="text-sm font-semibold text-slate-50">Will Solarly have direct access to my accounts?</h3>
+              <p class="text-xs text-slate-300 mt-1.5">
+                In early phases, you can opt into signals-only tiers. Execution tiers (when available) use
+                scoped API keys, per-wing isolation, and least-privilege access by design.
+              </p>
+            </div>
+
+            <div class="glass rounded-2xl p-4 sm:p-5">
+              <h3 class="text-sm font-semibold text-slate-50">Can Solarly guarantee profits?</h3>
+              <p class="text-xs text-slate-300 mt-1.5">
+                Absolutely not. Markets are chaotic. The goal is to give you an auditable,
+                regime-aware co-pilot that helps you compound decisions, not promise outcomes.
+              </p>
+            </div>
+
+            <div class="glass rounded-2xl p-4 sm:p-5">
+              <h3 class="text-sm font-semibold text-slate-50">How do I get into the beta?</h3>
+              <p class="text-xs text-slate-300 mt-1.5">
+                Drop your email in the form above. You’ll get occasional build notes and an invite
+                if your use-case is a strong fit for this phase of Solarly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-slate-950/95">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-[11px] text-slate-400">
+        <div class="flex items-center gap-2">
+          <span class="text-slate-200 font-semibold">Solarly.ai</span>
+          <span class="text-slate-600">·</span>
+          <span>Experimental AI trading co-pilot. Use at your own risk.</span>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <span class="text-slate-500">© <span id="year"></span> Solarly. All rights reserved.</span>
+          <a href="#" class="hover:text-slate-200">Terms</a>
+          <a href="#" class="hover:text-slate-200">Privacy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple “fake submit” to show success without backend wiring yet.
+    const form = document.getElementById('lead-form');
+    const msg = document.getElementById('lead-message');
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const emailInput = form.querySelector('input[name="email"]');
+  const email = (emailInput.value || '').trim();
+  if (!email) return;
+
+  msg.classList.add('hidden');
+  msg.classList.remove('text-red-400');
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+
+    if (!res.ok) throw new Error('Request failed');
+
+    msg.textContent = "Got it. You're on the radar. ☀️";
+    msg.classList.remove('hidden');
+    emailInput.value = '';
+  } catch (err) {
+    console.error(err);
+    msg.textContent = "Hmm, something glitched. Please try again.";
+    msg.classList.remove('hidden');
+    msg.classList.add('text-red-400');
+  }
+});
+
+
+
+async function startAdvisorPro() {
+  try {
+    const emailInput =
+      document.getElementById('email') ||
+      (form && form.querySelector('input[name="email"]'));
+
+    const email = emailInput && emailInput.value.trim();
+    if (!email) {
+      alert('Please enter your email first so we can tie your trial to your account.');
+      if (emailInput) emailInput.focus();
+      return;
+    }
+
+    const res = await fetch('/api/checkout-advisor-pro', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        origin: window.location.origin,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data && data.url) {
+      window.location.href = data.url;
+    } else {
+      console.error('Unexpected response from checkout endpoint', data);
+      alert('Something went wrong starting your trial. Please try again in a minute.');
+    }
+  } catch (err) {
+    console.error('Error starting Pro trial', err);
+    alert('Unable to start the trial right now. Please try again shortly.');
+  }
+}
+
+(function () {
+  const proBtn = document.getElementById('advisor-pro-btn');
+  if (proBtn) {
+    proBtn.addEventListener('click', startAdvisorPro);
+  }
+})();
+
+
+
+
+  </script>
+</body>
 </html>
