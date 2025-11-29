@@ -120,40 +120,53 @@
 
     <!-- MAIN -->
     <main class="flex-1">
+
+
       <!-- HERO -->
       <section class="relative overflow-hidden">
-        <div class="absolute inset-0 solar-halo opacity-70 -translate-y-32 pointer-events-none"></div>
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative">
-          <div class="grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-10 items-center">
-            <!-- Hero text -->
+        <div
+          class="absolute inset-0 solar-halo opacity-70 -translate-y-32 pointer-events-none"
+        ></div>
+
+        <div
+          class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+        >
+          <div
+            class="grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-10 items-center"
+          >
+            <!-- Left column: copy + CTA -->
             <div>
-              <div class="inline-flex items-center gap-2 pill border border-slate-700 bg-slate-900/90 px-3 py-1 mb-5 text-[11px] uppercase tracking-[0.18em] text-slate-300">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Private beta · Crypto & options</span>
+              <div
+                class="inline-flex items-center rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-slate-300"
+              >
+                <span class="mr-2 h-2 w-2 rounded-full bg-emerald-400"></span>
+                PRIVATE BETA · CRYPTO &amp; OPTIONS
               </div>
 
-              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-slate-50">
-                AI-powered trading journal for BTC, ETH &amp; GSOL<br class="hidden sm:block" />
-                <span class="bg-gradient-to-r from-yellow-300 via-orange-400 to-fuchsia-400 bg-clip-text text-transparent">
-                  riding the market sun for you.
-                </span>
+              <h1
+                class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-slate-50"
+              >
+                AI-powered trading journal for BTC, ETH &amp; GSOL
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-orange-400 to-pink-400"
+                  >riding the market sun for you.</span
+                >
               </h1>
 
-              <p class="mt-5 text-sm sm:text-base text-slate-300 max-w-xl">
-                Solarly reads regimes, scores edge, and executes inside risk guardrails across your
-                <span class="font-semibold text-slate-100">Coinbase</span> and
-                <span class="font-semibold text-slate-100">Tastytrade</span> universes. Rules & data first; memes optional.
+              <p class="mt-4 max-w-xl text-base sm:text-lg text-slate-300">
+                Solarly reads regimes, scores edge, and executes inside risk
+                guardrails across your <span class="font-semibold">Coinbase</span>
+                and <span class="font-semibold">Tastytrade</span> universes. Rules
+                &amp; data first; memes optional.
               </p>
-
-
-
 
               <!-- CTA: free list + Pro trial -->
               <div
                 id="signup"
-                class="mt-6 glass max-w-md rounded-2xl p-5 shadow-xl shadow-yellow-500/20"
+                class="mt-8 max-w-md rounded-2xl bg-slate-900/80 p-5 shadow-xl shadow-yellow-500/20 ring-1 ring-slate-700/80"
               >
-                <p class="text-xs font-semibold tracking-wide text-emerald-300">
+                <p
+                  class="text-xs font-semibold tracking-wide text-emerald-300 uppercase"
+                >
                   Get first access to Solarly's live signals &amp; co-pilot tiers
                 </p>
 
@@ -168,7 +181,7 @@
                       name="email"
                       id="email"
                       placeholder="you@galaxyfunds.xyz"
-                      class="block w-full rounded-md border border-slate-600 bg-slate-900/80 px-4 py-3 text-sm text-slate-50 placeholder-slate-500 shadow-sm outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
+                      class="block w-full rounded-md border border-slate-600 bg-slate-900/90 px-4 py-3 text-sm text-slate-50 placeholder-slate-500 shadow-sm outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
                       required
                     />
                   </div>
@@ -208,79 +221,28 @@
                   does not execute trades or manage accounts.
                 </p>
               </div>
+            </div>
 
-
-
-
-
-
-                  <!-- Free / waitlist submit button -->
-                  <button
-                    type="submit"
-                    class="inline-flex items-center justify-center rounded-md bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
-                  >
-                    Get free signals
-                  </button>
-
-                  <!-- Pro trial button -->
-                  <button
-                    type="button"
-                    id="advisor-pro-btn"
-                    class="inline-flex items-center justify-center rounded-md border border-sky-400 px-5 py-3 text-sm font-semibold text-sky-100 hover:bg-sky-500/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
-                  >
-                    Start 7-Day Pro Trial – $1.99
-                  </button>
-                </form>
-
-                <p class="mt-3 text-sm text-slate-300">
-                  No spam. Just signal updates and product news.
-                </p>
-
-                <p
-                  id="lead-message"
-                  class="mt-1 text-[11px] text-emerald-400 hidden"
+            <!-- Right column: orbit visual stays as-is -->
+            <div class="relative">
+              <!-- keep your existing right-side hero visual here.
+                   If you already have a <div> with the Solarly bot orb,
+                   leave that markup instead of this placeholder. -->
+              <div
+                class="rounded-3xl bg-slate-900/70 px-8 py-10 border border-slate-700/70"
+              >
+                <!-- existing orbit graphic / content -->
+                <!-- If you have your own markup, use that and delete this placeholder. -->
+                <div
+                  class="flex items-center justify-center h-64 rounded-2xl bg-gradient-to-br from-amber-300 via-orange-500 to-pink-500 text-slate-950 font-semibold text-lg"
                 >
-                  Got it. You’re on the radar. ☀️
-                </p>
-
-                <p class="mt-2 text-[11px] text-slate-400 leading-snug">
-                  Ready for full access? Use the Pro trial button above for 7 days
-                  at $1.99, then $49/mo. Educational signals only; Solarly ADVISOR
-                  does not execute trades or manage accounts.
-                </p>
+                  Solarly orbit graphic
+                </div>
               </div>
-
-
-
-<section class="platform-strip">
-  <p class="platform-strip-label">Platforms Solarly works with</p>
-  <div class="platform-strip-row">
-    <div class="platform-pill">
-      <img
-        src="/logos/coinbase.svg"
-        alt="Coinbase"
-        class="platform-logo"
-      />
-      <span>
-        Coinbase
-        <span class="platform-pill-sub"> · Crypto &amp; BTC sink</span>
-      </span>
-    </div>
-    <div class="platform-pill">
-      <img
-        src="/logos/tastytrade.svg"
-        alt="Tastytrade"
-        class="platform-logo"
-      />
-      <span>
-        Tastytrade
-        <span class="platform-pill-sub"> · Options &amp; LEAPS</span>
-      </span>
-    </div>
-    <!-- ...rest of your platform strip... -->
-  </div>
-</section>
-
+            </div>
+          </div>
+        </div>
+      </section>
 
               <div class="mt-6 flex flex-wrap items-center gap-3 text-xs text-slate-400">
                 <div class="inline-flex items-center gap-2 pill border border-slate-700/80 bg-slate-900/80 px-3 py-1">
