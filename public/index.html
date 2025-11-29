@@ -932,6 +932,9 @@
         const proBtn = document.getElementById("btn-pro");
         const leadMsg = document.getElementById("lead-message");
 
+        // 🔒 TODO: replace with your real Stripe payment link URL
+        const STRIPE_PRO_URL = "https://YOUR_STRIPE_PAYMENT_LINK_HERE";
+
         function setMessage(kind, text) {
           if (!leadMsg) return;
           leadMsg.textContent = text;
@@ -949,67 +952,84 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
           });
+
           if (!res.ok) {
-            throw new Error("HTTP " + res.status);
+            throw new Error("HTTP " + res.status + " " + res.statusText);
           }
           return res.json().catch(() => ({}));
         }
 
+        function requireValidEmail() {
+          const email = getEmail();
+          if (!email || !email.includes("@")) {
+            setMessage(
+              "err",
+              "Add a valid email so Solarly knows where to send signals."
+            );
+            return null;
+          }
+          return email;
+        }
+
+        // --- Free signals button --------------------------------------------
         if (freeBtn) {
-          freeBtn.addEventListener("click", async () => {
-            const email = getEmail();
-            if (!email || !email.includes("@")) {
-              setMessage("err", "Add a valid email so Solarly knows where to send signals.");
-              return;
-            }
+          freeBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const email = requireValidEmail();
+            if (!email) return;
+
+            setMessage("ok", "Saving you to the list…");
+
             try {
-              setMessage("ok", "Saving your email…");
               await postJSON("/api/lead", {
                 email,
+                tier: "free",
                 source: "hero_free",
               });
-              setMessage(
-                "ok",
-                "Got it. You’re on the radar. ☀️ Check your inbox for Solarly updates soon."
-              );
+              setMessage("ok", "Got it. You're on the radar. ☀️");
+              if (emailInput) emailInput.value = "";
             } catch (err) {
-              console.error(err);
+              console.error("Free lead save failed:", err);
               setMessage(
                 "err",
-                "Couldn’t save that just now. Try again in a minute."
+                "Couldn't save that just now. Please try again, or email hello@solarly.ai."
               );
             }
           });
         }
 
+        // --- Pro trial button -----------------------------------------------
         if (proBtn) {
-          proBtn.addEventListener("click", async () => {
-            const email = getEmail();
-            if (!email || !email.includes("@")) {
-              setMessage("err", "Add a valid email so Stripe knows who’s starting the trial.");
-              return;
-            }
+          proBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const email = requireValidEmail();
+            if (!email) return;
+
+            setMessage("ok", "Opening secure checkout…");
+
+            // Try to save lead, but don't block checkout if this fails
             try {
-              setMessage("ok", "Creating your Pro trial checkout…");
-              const data = await postJSON("/api/checkout-advisor-pro", {
+              await postJSON("/api/lead", {
                 email,
-                source: "hero_pro_trial",
+                tier: "pro",
+                source: "hero_pro",
               });
-              if (data && data.url) {
-                window.location.href = data.url;
-              } else {
-                throw new Error("No checkout URL returned");
-              }
             } catch (err) {
-              console.error(err);
+              console.error("Pro lead save failed (continuing to Stripe):", err);
+            }
+
+            if (STRIPE_PRO_URL && STRIPE_PRO_URL.startsWith("http")) {
+              window.location.href = STRIPE_PRO_URL;
+            } else {
               setMessage(
                 "err",
-                "Couldn’t start the trial just now. Please try again."
+                "Checkout link not configured yet. Ask the team to plug in the Stripe URL."
               );
             }
           });
         }
       })();
     </script>
+
   </body>
 </html>
