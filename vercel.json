@@ -7,10 +7,6 @@
     {
       "source": "/disclosures",
       "destination": "/disclosures.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ]
 }
