@@ -627,6 +627,13 @@
 
 
 .sample-tag{margin-left:8px;font-size:12px;padding:2px 8px;border:1px solid rgba(255,255,255,.14);border-radius:999px;opacity:.75}
+
+/* --- Hero mini block (What it is / isn’t) --- */
+.hero-mini-block{margin-top:16px;display:grid;gap:12px}
+@media(min-width:900px){.hero-mini-block{grid-template-columns:1fr 1fr}}
+.hero-mini-col{padding:12px;border:1px solid rgba(255,255,255,.10);border-radius:14px;background:rgba(255,255,255,.02)}
+.hero-mini-head{font-weight:700;margin-bottom:8px}
+.hero-mini-list{margin:0;padding-left:18px;opacity:.9;display:grid;gap:6px}
 </style>
   </head>
   <body>
@@ -669,10 +676,26 @@
               <span>Private beta · Crypto &amp; options</span>
             </div>
 
-            <h1 class="hero-title">
-              AI-powered trading journal for BTC, ETH &amp; GSOL
-              <span class="sun">riding the market sun for you.</span>
-            </h1>
+            <h1 class="hero-title">Self-hosted trading ops framework (you hold the keys).</h1>
+<p class="hero-subtitle">Runs in your VM. You keep brokerage keys and execution control. Solarly generates signals, enforces hard caps (spend/exposure/order rate), writes an append-only audit log, and produces weekly ops reports. No custody. No discretionary trading. Not investment advice.</p>
+<div class="hero-mini-block">
+  <div class="hero-mini-col">
+    <div class="hero-mini-head">What it is</div>
+    <ul class="hero-mini-list">
+      <li>Self-hosted framework + CLI operator pack</li>
+      <li>Hard caps + kill switch + monitoring alerts</li>
+      <li>Exportable audit log + weekly ops report</li>
+    </ul>
+  </div>
+  <div class="hero-mini-col">
+    <div class="hero-mini-head">What it isn’t</div>
+    <ul class="hero-mini-list">
+      <li>Not investment advice</li>
+      <li>No custody of funds or brokerage keys</li>
+      <li>No discretionary trading by us</li>
+    </ul>
+  </div>
+</div>
 
             <p class="hero-sub">
               Solarly reads regimes, scores edge, and generates signals inside risk
@@ -704,7 +727,7 @@
                     type="button"
                     class="btn btn-primary"
                   >
-                    Get free signals
+                    Apply for Concierge Pilot
                   </button>
 
                   <button
@@ -712,21 +735,16 @@
                     type="button"
                     class="btn btn-secondary"
                   >
-                    Start 7-Day Free Trial
+                    Purchase Pilot Setup
                   </button>
                 </div>
 
                 <div class="hero-offer-lines">
                   <p class="hero-offer-line"><strong>Free:</strong> Discord signals (BTC/ETH/GSOL) • Weekly digest</p>
-                  <p class="hero-offer-line"><strong>Pro:</strong> Full journal entries • Weekly KPI report • Priority updates</p>
+                  <p class="hero-offer-line"><strong>Concierge Pilot:</strong> Self-hosted setup • caps + kill switch • weekly ops report</p>
                 </div>
 
-      <p class="hero-cta-disclaimer">
-        No spam. Just signal updates and product news. Ready for full
-        access? Use the Pro trial button above for <strong>7 days free,
-        then $49/mo.</strong> Educational signals only; Solarly ADVISOR
-        does not execute trades or manage accounts.
-      </p>
+      <p class="hero-cta-disclaimer">No custody. No discretionary trading. Execution stays with you and your brokerage.</p>
       <p id="lead-message" class="lead-message" hidden></p>
     </form>
               <div id="sample-output" class="sample-output-card">
