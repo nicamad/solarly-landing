@@ -1,8 +1,21 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
   ],
   "redirects": [
-    { "source": "/disclosures", "destination": "/#disclosures", "permanent": false }
+    {
+      "source": "/disclosures",
+      "destination": "/#disclosures",
+      "permanent": false
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/heartbeat",
+      "schedule": "0 14 * * *"
+    }
   ]
 }
