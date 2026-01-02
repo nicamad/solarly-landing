@@ -8,7 +8,17 @@
   "redirects": [
     {
       "source": "/disclosures",
-      "destination": "/#disclosures",
+      "destination": "/disclosures.html",
+      "permanent": false
+    },
+    {
+      "source": "/pilot-terms",
+      "destination": "/pilot-terms.html",
+      "permanent": false
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html",
       "permanent": false
     }
   ],

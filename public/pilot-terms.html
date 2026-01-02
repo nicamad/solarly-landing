@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Solarly — Pilot Terms</title>
+  <style>
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:#e8e8ea;background:#070a12}
+    .wrap{max-width:920px;margin:0 auto;padding:40px 20px}
+    a{color:#9bd1ff;text-decoration:none} a:hover{text-decoration:underline}
+    .card{border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(255,255,255,.03);padding:18px 18px;margin:16px 0}
+    h1{font-size:34px;margin:0 0 10px} h2{font-size:18px;margin:22px 0 10px}
+    p,li{line-height:1.55;opacity:.92}
+    .muted{opacity:.75;font-size:13px}
+    ul{margin:8px 0 8px 18px}
+    .pill{display:inline-block;font-size:12px;padding:4px 10px;border:1px solid rgba(255,255,255,.14);border-radius:999px;opacity:.8}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .links{display:flex;gap:12px;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="pill">Concierge Pilot</div>
+        <h1>Pilot Terms</h1>
+        <div class="muted">Last updated: 2026-01-02</div>
+      </div>
+      <div class="links">
+        <a href="/disclosures">Disclosures</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/">Home</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>1) Scope of Pilot</h2>
+      <ul>
+        <li>Duration: 30 days (unless extended in writing).</li>
+        <li>1 broker, 1 account, 1 environment (customer-owned VM/cloud).</li>
+        <li>1–2 strategies maximum; strict caps configured up front.</li>
+        <li>Framework + tooling + onboarding support only.</li>
+      </ul>
+
+      <h2>2) Deliverables</h2>
+      <ul>
+        <li>Configuration snapshot (caps/params) at kickoff and upon changes.</li>
+        <li>Weekly ops report (activity, errors/rejects, incidents, notes).</li>
+        <li>Audit log export (decision → order → fill chain, where available).</li>
+        <li>Incident log (what happened, mitigation, recovery notes).</li>
+      </ul>
+
+      <h2>3) Customer Responsibilities</h2>
+      <ul>
+        <li>Customer provisions and controls the VM/cloud environment.</li>
+        <li>Customer retains and manages brokerage keys/credentials.</li>
+        <li>Customer is responsible for approving parameters/caps and monitoring usage.</li>
+        <li>Customer is responsible for all trading decisions and outcomes.</li>
+      </ul>
+
+      <h2>4) Safety Controls</h2>
+      <ul>
+        <li>Caps: daily spend/loss (as applicable), max exposure, max order rate.</li>
+        <li>Kill switch: disables execution + attempts to cancel open orders (where supported).</li>
+        <li>Monitoring/alerts: API failures, rejects, staleness, basic health checks.</li>
+      </ul>
+
+      <h2>5) Fees, Billing, Refunds</h2>
+      <ul>
+        <li>Fees are as shown at checkout (Stripe payment links).</li>
+        <li>Setup fee is generally non-refundable once onboarding begins.</li>
+        <li>Monthly subscription (if applicable) can be canceled by the customer at any time; service continues through the paid period unless terminated earlier for safety/non-payment.</li>
+      </ul>
+
+      <h2>6) Support Boundaries</h2>
+      <ul>
+        <li>Best-effort support; no guaranteed uptime/SLA during pilot.</li>
+        <li>Changes outside scope (new strategies, heavy customization) require a separate agreement.</li>
+      </ul>
+
+      <h2>7) Suspension / Termination</h2>
+      <ul>
+        <li>We may pause or terminate the pilot if safety controls are bypassed, misuse is detected, or continued operation is unsafe.</li>
+        <li>Either party may terminate for material breach; non-payment terminates access to services.</li>
+      </ul>
+
+      <h2>8) Liability</h2>
+      <ul>
+        <li>No consequential damages (including lost profits).</li>
+        <li>Maximum liability is limited to fees paid during the pilot period (or the last 30 days), to the extent permitted by law.</li>
+      </ul>
+
+      <h2>9) Disclosures</h2>
+      <p>See <a href="/disclosures">Disclosures</a> for risk warnings and “no advice / no custody” statements. Those disclosures are incorporated by reference.</p>
+    </div>
+
+    <div class="muted">
+      This page is a practical pilot summary and is not legal advice. If you need a formal MSA/SOW, use this as the baseline and have counsel review.
+    </div>
+  </div>
+</body>
+</html>
