@@ -27,6 +27,14 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Email is required' });
   }
 
+  if (leadEmail.length > 254) {
+    return res.status(400).json({ error: 'Email is too long' });
+  }
+  const basicEmailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(leadEmail);
+  if (!basicEmailOk) {
+    return res.status(400).json({ error: 'Invalid email' });
+  }
+
   if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
     console.error('Missing Supabase env vars');
     return res.status(500).json({ error: 'Server misconfigured' });

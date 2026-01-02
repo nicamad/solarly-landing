@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 index.html.bak
 .vercel/
+=======
+
+.env.local
+>>>>>>> 7ba1cd8 (Align hero copy with signals-only and harden email capture)

@@ -682,6 +682,7 @@
                   />
                 </div>
 
+<<<<<<< HEAD
                 <div class="hero-buttons-row">
                   <button
                     id="btn-free"
@@ -690,6 +691,13 @@
                   >
                     Get free signals
                   </button>
+=======
+              <p class="mt-5 text-sm sm:text-base text-slate-300 max-w-xl">
+                Solarly reads regimes, scores edge, and generates signals inside risk guardrails across your
+                <span class="font-semibold text-slate-100">Coinbase</span> and
+                <span class="font-semibold text-slate-100">Tastytrade</span> universes. Rules & data first; memes optional.
+              </p>
+>>>>>>> 7ba1cd8 (Align hero copy with signals-only and harden email capture)
 
                   <button
                     id="btn-pro"
@@ -1046,7 +1054,18 @@
             const email = requireValidEmail();
             if (!email) return;
 
+<<<<<<< HEAD
             setMessage("ok", "Opening secure checkout…");
+=======
+  <script>
+    // Lead capture: posts to /api/subscribe and displays a status message.
+    const form = document.getElementById('lead-form');
+    const msg = document.getElementById('lead-message');
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+>>>>>>> 7ba1cd8 (Align hero copy with signals-only and harden email capture)
 
             // Try to save lead, but don't block checkout if this fails
             try {
@@ -1059,6 +1078,7 @@
               console.error("Pro lead save failed (continuing to Stripe):", err);
             }
 
+<<<<<<< HEAD
             if (STRIPE_PRO_URL && STRIPE_PRO_URL.startsWith("http")) {
               window.location.href = STRIPE_PRO_URL;
             } else {
@@ -1071,6 +1091,18 @@
         }
       })();
     </script>
+=======
+  const basicEmailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!basicEmailOk) {
+    msg.textContent = 'Please enter a valid email.';
+    msg.classList.remove('hidden');
+    msg.classList.add('text-red-400');
+    return;
+  }
+
+  msg.classList.add('hidden');
+  msg.classList.remove('text-red-400');
+>>>>>>> 7ba1cd8 (Align hero copy with signals-only and harden email capture)
 
   </body>
 </html>
