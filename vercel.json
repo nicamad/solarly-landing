@@ -21,11 +21,5 @@
       "destination": "/privacy.html",
       "permanent": false
     }
-  ],
-  "crons": [
-    {
-      "path": "/api/heartbeat",
-      "schedule": "0 14 * * *"
-    }
   ]
 }
